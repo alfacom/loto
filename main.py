@@ -1,14 +1,14 @@
 from random import shuffle
-from typing import List
+from typing import List, Optional
 
 from player import Player
 
 
-def get_players_count(txt: str) -> int:
+def get_players_count(txt: str) -> Optional[int]:
     try:
         players_count = int(input(f"Введите кол-во участвующих {txt}: "))
     except ValueError:
-        raise TypeError('Ответ должен быть цифрой')
+        return None
     return players_count
 
 
@@ -55,6 +55,9 @@ def game_on(players: List[Player]) -> None:
 def main() -> None:
     players_count = get_players_count('людей')
     computers_count = get_players_count('компьютеров')
+    if players_count is None or computers_count is None:
+        print('Ответ должен быть цифрой')
+        return
     players = generate_players(players_count, computers_count)
     game_on(players)
     print('Игра закончилась, спасибо всем за участие!')

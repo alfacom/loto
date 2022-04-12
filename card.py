@@ -5,8 +5,10 @@ from prettytable import PrettyTable, NONE
 
 
 class Card:
+    NUMBERS_COUNT = 15
+
     def __init__(self, card_name: str = ''):
-        self.numbers = sample(range(1, 91), 15)
+        self.numbers = sample(range(1, 91), self.NUMBERS_COUNT)
         self.card_name = card_name
         self.card = self.set_card()
 
